@@ -54,6 +54,7 @@ class Mul(Function):
 
 
 def mul(x0, x1):
+	x1 = as_array(x1)
 	return Mul()(x0, x1)
 
 
@@ -151,8 +152,8 @@ class Variable:
 
 Variable.__add__ = add
 Variable.__radd__ = add
-Variable.__mul__ = add
-Variable.__rmul__ = add
+Variable.__mul__ = mul
+Variable.__rmul__ = mul
 
 class Config:
 	enable_backprop = True
