@@ -16,4 +16,5 @@ else:
 	from dezero.core import as_array
 	from dezero.core import as_Variable
 	from dezero.core import setup_Variable
+
 setup_Variable()

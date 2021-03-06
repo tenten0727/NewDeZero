@@ -95,7 +95,7 @@ class Div(Function):
 		return y
 
 	def backward(self, gy):
-		x0, x1 = self.inputs[0].data, self.inputs[1].data
+		x0, x1 = self.inputs
 		g0 = gy / x1
 		g1 = gy * (-x0 / x1 ** 2)
 		return g0, g1
@@ -120,7 +120,7 @@ class Pow(Function):
 		return y
 
 	def backward(self, gy):
-		x = self.inputs[0].data
+		x = self.inputs[0]
 		c = self.c
 		gx = c * x ** (c - 1) * gy
 		return gx
@@ -189,7 +189,7 @@ class Variable:
 		while funcs:
 			f = funcs.pop()
 			gys = [output().grad for output in f.outputs]
-			gxs = f.backward(*gys)
+
 			with using_config('enable_backprop', create_graph):
 				gxs = f.backward(*gys)
 				if not isinstance(gxs, tuple):
